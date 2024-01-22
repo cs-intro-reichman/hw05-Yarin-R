@@ -12,8 +12,8 @@ public class GameOfLife {
 		//// Uncomment the test that you want to execute, and re-compile.
 		//// (Run one test at a time).
 		// test1(fileName);
-		test2(fileName);
-		// test3(fileName, 3);
+		// test2(fileName);
+		 test3(fileName, 3);
 		// play(fileName);
 	}
 
@@ -29,7 +29,7 @@ public class GameOfLife {
 		int[][] board = read(fileName);
 		//// Write here code that tests that the count and cellValue functions
 		System.out.println("neighbors " + count(board, 2, 3));
-		System.out.println("next cell " + cellValue(board, 3, 3));
+		System.out.println("next cell " + cellValue(board, 2, 3));
 		print(board);
 		//// are working properly, and returning the correct values.
 	}
@@ -72,20 +72,23 @@ public class GameOfLife {
 		In in = new In(fileName); // Constructs an In object for reading the input file
 		int rows = Integer.parseInt(in.readLine());
 		int cols = Integer.parseInt(in.readLine());
-		int[][] board = new int[rows][cols];
-		String line; // declare a string which will contain each line in the data file.
-		for (int i = 0; i < rows; i++) {
+		int[][] newBoard = new int[rows + 2][cols + 2];
+		String line = ""; // declare a string which will contain each line in the data file.
+		for (int i = 1; i < rows + 1; i++) {
 			line = in.readLine();
-			for (int j = 0; j < cols; j++) {
-				// check if a character in a line (which isn't empty) equals to 'x'.
-				if (line != null && j < line.length() && line.charAt(j) == 'x') {
-					board[i][j] = 1; // then alive
-				} else {
-					board[i][j] = 0; // else dead
+			for (int j = 1; j < cols + 1; j++) {
+				if (j <= line.length()) {
+					// check if a character in a line (which isn't empty) equals to 'x'.
+					if (line.charAt(j - 1) == 'x') {
+						newBoard[i][j] = 1; // then alive
+					} else {
+						newBoard[i][j] = 0; // else dead
+					}
 				}
+				
 			}
 		}
-		return board;
+		return newBoard;
 	}
 
 	// Creates a new board from the given board, using the rules of the game.
@@ -143,7 +146,6 @@ public class GameOfLife {
 		int count = 0; // declare a count integer that will contain the number of alive neighbors of board[i][j].
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
-				
 				if (((i + x) < board.length) && ((j + y) < board[0].length)) {
 					// check if not board[i][j].
 					if (!((x == 0) && (y == 0))) {
@@ -162,8 +164,8 @@ public class GameOfLife {
 	public static void print(int[][] arr) {
 		int rows = arr.length; // number of rows in board.
 		int cols = arr[0].length; // number of columns in board.
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
+		for (int i = 1; i < rows - 1; i++) {
+			for (int j = 1; j < cols - 1; j++) {
 				// print arr[i][j] with 2 characters between it.
 				System.out.printf("  %d", arr[i][j]);
 			}
