@@ -12,8 +12,8 @@ public class GameOfLife {
 		//// Uncomment the test that you want to execute, and re-compile.
 		//// (Run one test at a time).
 		// test1(fileName);
-		// test2(fileName);
-		test3(fileName, 3);
+		test2(fileName);
+		// test3(fileName, 3);
 		// play(fileName);
 	}
 
@@ -28,8 +28,9 @@ public class GameOfLife {
 	private static void test2(String fileName) {
 		int[][] board = read(fileName);
 		//// Write here code that tests that the count and cellValue functions
-		System.out.println(count(board, 2, 1));
-		System.out.println(cellValue(board, 2, 1));
+		System.out.println("neighbors " + count(board, 2, 3));
+		System.out.println("next cell " + cellValue(board, 3, 3));
+		print(board);
 		//// are working properly, and returning the correct values.
 	}
 
@@ -142,11 +143,14 @@ public class GameOfLife {
 		int count = 0; // declare a count integer that will contain the number of alive neighbors of board[i][j].
 		for (int x = -1; x <= 1; x++) {
 			for (int y = -1; y <= 1; y++) {
-				// check if not board[i][j].
-				if (!((x == 0) && (y == 0))) {
-					// check if alive
-					if (board[i + x][j + y] == 1) {
-						count++;
+				
+				if (((i + x) < board.length) && ((j + y) < board[0].length)) {
+					// check if not board[i][j].
+					if (!((x == 0) && (y == 0))) {
+						// check if alive
+						if (board[i + x][j + y] == 1) {
+							count++;
+						}
 					}
 				}
 			}
