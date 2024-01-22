@@ -161,8 +161,13 @@ public class GameOfLife {
 		for (int i = 0; i < rows; i++) {
 			System.out.print(" ");
 			for (int j = 0; j < cols; j++) {
-				// print arr[i][j] with 2 characters between it.
-				System.out.printf("%d  ", arr[i][j]);
+				if (j < cols - 1) {
+					// print arr[i][j] with 2 characters between it.
+					System.out.printf("%d  ", arr[i][j]);
+				} else {
+					System.out.print(arr[i][j]);
+				}
+
 			}
 			System.out.println();
 		}
