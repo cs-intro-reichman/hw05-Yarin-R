@@ -159,7 +159,6 @@ public class GameOfLife {
 		int rows = arr.length; // number of rows in board.
 		int cols = arr[0].length; // number of columns in board.
 		for (int i = 0; i < rows; i++) {
-			System.out.print(" ");
 			for (int j = 0; j < cols; j++) {
 				if (j < cols - 1) {
 					// print arr[i][j] with 2 characters between it.
